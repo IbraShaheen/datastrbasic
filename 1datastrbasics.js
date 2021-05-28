@@ -1,4 +1,3 @@
-
 const prompt = require("prompt-sync")({ sigint: true });
 
 class Node {
@@ -69,4 +68,4 @@ you.insertHighlights(age);
 
 you.getLinkedList();
 
-//console.log(you);
+console.log(you);
