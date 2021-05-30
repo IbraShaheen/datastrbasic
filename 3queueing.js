@@ -34,7 +34,7 @@ class Queue {
 
     if (this.isEmpty()) this.front = newNode; // here this.front & this.back are the same
 
-    else this.back.next = newNode; //linking
+    else this.back.next = newNode; //linking, .next is not a property (JS is very flexable)
     this.back = newNode; //adding
     this.length++;
 
