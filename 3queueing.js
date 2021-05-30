@@ -8,7 +8,7 @@ class Node {
 }
 
 class Queue {
-  constructor(limit = 4 /* I'm not sure maybe the limit = 10*/ ) {
+  constructor(limit = 4 /*  limit = 10 */ ) {
     this.front = null;
     this.back = null;
     this.length = 0;
@@ -81,6 +81,8 @@ class Queue {
 
 const ride = new Queue();
 
+console.log(ride.waitingtime);
+
 ride.enqueue(2);
 ride.enqueue(6);
 ride.enqueue(14);
@@ -91,3 +93,5 @@ ride.enqueue(6);
 
  console.log(ride.dequeue()); 
 // console.log(ride.dequeue()); 
+
+console.log(ride.waitingtime);
