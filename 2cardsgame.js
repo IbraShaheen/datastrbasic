@@ -1,3 +1,5 @@
+// FILO: first in last out
+
 class Node {
   constructor(card, number, next = null) {
     this.card = card;
@@ -78,13 +80,14 @@ deck.createDeck();
 let player1 = new Stack(5);
 let counterOne = 0;
 if (player1.isEmpty() && !player1.isFull()) {
-  console.log(` -------------------------
-  Player 1: \n -------------------------
+  console.log(` ـــــــــــــــــــــــــــــــــــــــ
+  Player 1: \n ـــــــــــــــــــــــــــــــــــــــ
   `);
   while (counterOne < player1.limit) {
-    let card = deck.pop();
-    player1.push(card);
-    console.log(`${counterOne + 1}- ${card}`);
+ let card = deck.pop();
+ player1.push(card);
+
+    console.log(`${counterOne + 1}  ${card}`);
     counterOne++;
   }
 
@@ -94,19 +97,19 @@ if (player1.isEmpty() && !player1.isFull()) {
 let player2 = new Stack(5);
 let player2Counter = 0;
 if (player2.isEmpty() && !player2.isFull()) {
-  console.log(` -------------------------
-  Player 2: \n -------------------------
+  console.log(` ـــــــــــــــــــــــــــــــــــــــ
+  Player 2: \n ـــــــــــــــــــــــــــــــــــــــ
   `);
   while (player2Counter < player2.limit) {
     let card2 = deck.pop();
     player2.push(card2);
-    console.log(`${player2Counter + 1}- ${card2}`);
+    console.log(`${player2Counter + 1} ${card2}`);
     player2Counter++;
   }
 
 }
 
 
-console.log(`----------------------------------------
-The first card in the deck is ${deck.peek()} \n----------------------------------------
+console.log(`ـــــــــــــــــــــــــــــــــــــــ
+The first card in the deck is ${deck.peek()} \nـــــــــــــــــــــــــــــــــــــــ
 `);

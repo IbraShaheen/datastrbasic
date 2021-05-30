@@ -1,3 +1,5 @@
+// FIFO: first in first out
+
 class Node {
   constructor(groupsize, next = null) {
     this.groupsize = groupsize;
@@ -6,7 +8,7 @@ class Node {
 }
 
 class Queue {
-  constructor(limit = 4) {
+  constructor(limit = 4 /* I'm not sure maybe the limit = 10*/ ) {
     this.front = null;
     this.back = null;
     this.length = 0;
@@ -14,30 +16,38 @@ class Queue {
     this.waitingtime = 0;
   }
 
+
   isFull = () => this.length === this.limit;
+
 
   isEmpty = () => this.length === 0;
 
-  peek = () =>
-    this.isEmpty()
-      ? `Go ahead no time to wait`
-      : `${this.length} groups of people in front of you. The waiting time ${this.waitingtime} min`
+
+  peek = () => {
+   if(this.isEmpty()) console.log(`no time to wait ${this.waitingtime}`);
+   else { return this.front}
+ }
 
 
   addnode = (groupsize) => {
     const newNode = new Node(groupsize);
-    if (this.isEmpty()) this.front = newNode;
-    else this.back.next = newNode;
-    this.back = newNode;
+
+    if (this.isEmpty()) this.front = newNode; // here this.front & this.back are the same
+
+    else this.back.next = newNode; //linking
+    this.back = newNode; //adding
     this.length++;
+
     this.waitingtime += groupsize * 0.5;
     console.log(
-      `${this.length} groups of people in front of you. The waiting time ${this.waitingtime} min`
-    );
+      `${this.length} groups of people in front of you. The waiting time ${this.waitingtime} min`);
   };
+
+
   enqueue = (groupsize) => {
     if (this.isFull()) {
-      console.log("queue is full");
+      console.log("queue is full, you can't enter any group");
+
     } else {
       let people = groupsize;
       while (people > 12) {
@@ -50,22 +60,24 @@ class Queue {
 
   dequeue = () => {
     if (this.isEmpty()) {
-      console.log("Empty queue");
+      console.log("Empty queue, nothing to rideout");
+
     } else {
       const removed = this.front;
       if (this.length === 1) {
         this.front = null;
         this.back = null;
+
       } else {
         this.front = removed.next;
       }
       this.length--;
+
       this.waitingtime -= removed.groupsize * 0.5;
-      return `\n The front group entered. ${this.length} groups left. The waiting time is ${this.waitingtime} min`;
+      return `\n The front group left. ${this.length} groups still in front of you. The waiting time is ${this.waitingtime} min`;
     }
   };
 }
-
 
 const ride = new Queue();
 
@@ -73,9 +85,9 @@ ride.enqueue(2);
 ride.enqueue(6);
 ride.enqueue(14);
 ride.enqueue(6);
-ride.enqueue(10);
+
 
 //console.log(ride.peek());
 
-console.log(ride.dequeue()); 
-console.log(ride.dequeue()); 
+ console.log(ride.dequeue()); 
+// console.log(ride.dequeue()); 
